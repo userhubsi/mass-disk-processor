@@ -14,6 +14,7 @@ enabled_plugins = [
     "firefox_history",
     "chrome_history",
     "edge_history",
+    "browser_history_categories",
 
     # Windows-specific
     "win_lifespan",

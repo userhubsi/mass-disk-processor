@@ -17,7 +17,8 @@ from mdp_plugins import (
 from mdp_plugins import (
     chrome_history,
     edge_history,
-    firefox_history
+    firefox_history,
+    browser_history_categories
 )
 
 # Windows-specific
@@ -58,6 +59,7 @@ plugin_registry = {
     "firefox_history": firefox_history.FirefoxHistory,
     "chrome_history": chrome_history.ChromeHistory,
     "edge_history": edge_history.EdgeHistory,
+    "browser_history_categories": browser_history_categories.BrowserHistoryCategories,
 
     # Windows
     "win_lifespan": win_lifespan.WinOSLifespan,

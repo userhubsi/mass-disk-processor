@@ -22,3 +22,5 @@ max_file_size_for_sha1_calculation = 1000 # 1 KB
 
 # Set True if db should be used to store file lists (with sha1 and signatures) and load file info from file list if available
 use_db_for_file_lists = False
+
+path_to_browser_categories_json = "set/path/to/browser_categories.json"  # expected format: {"category": ["domain"]}
