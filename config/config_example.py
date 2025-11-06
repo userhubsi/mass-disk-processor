@@ -1,8 +1,8 @@
 # copy this file to config.py and update details for plaso to work
 # install plaso dependencies as per instructions
 
-path_to_venv_python3 = '/set/path/to/installed/plaso/venv/python3'
-path_to_plaso_scripts = '/set/path/to/plaso/scripts/folder'
+path_to_venv_python3 = "/set/path/to/installed/plaso/venv/python3"
+path_to_plaso_scripts = "/set/path/to/plaso/scripts/folder"
 
 # Specify path to a minimal RDSv3 (downloaded from: https://www.nist.gov/itl/ssd/software-quality-group/national-software-reference-library-nsrl/nsrl-download/current-rds)
 # current implementation: this db has to have a table "FILE" with a column "sha1"
@@ -18,7 +18,9 @@ populate_file_signatures = False
 # Even higher increase of preprocessing time
 populate_file_hashes_and_signatures = False
 # Specify maximum size of files where sha1 should be computed during pre-processing
-max_file_size_for_sha1_calculation = 1000 # 1 KB
+max_file_size_for_sha1_calculation = 1000  # 1 KB
 
 # Set True if db should be used to store file lists (with sha1 and signatures) and load file info from file list if available
 use_db_for_file_lists = False
+
+bulk_extractor = "/path/to/bulk_extractor/executable"
