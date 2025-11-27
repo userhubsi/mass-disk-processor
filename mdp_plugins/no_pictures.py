@@ -21,46 +21,47 @@ class NumberOfPictures(MDPPlugin):
         "no_non_nsrl_files_incl_zero",
     ]
 
+    image_extensions = {
+        "dwg",
+        "xcf",
+        "jpg",
+        "jpx",
+        "png",
+        "apng",
+        "gif",
+        "webp",
+        "cr2",
+        "tif",
+        "bmp",
+        "jxr",
+        "psd",
+        "ico",
+        "heic",
+        "avif",
+    }
+
     @staticmethod
     def is_user_controlled(file: FileItem) -> bool:
-        # TODO: What is meta_path?
         pattern = r"^P_\d+/(?:Users|Benutzer)/([^/]+)/(?:Desktop|Documents|Dokumente|Downloads|Pictures|Bilder|Music|Musik|Videos|Favorites|Favoriten|Links|Contacts|Kontakte|Saved Games|Gespeicherte Spiele|Searches|Suchen|3D Objects|3D Objekte)(?:/|$)"
         return re.match(pattern, file.full_path) is not None
 
-    @staticmethod
-    def is_picture(file: FileItem, use_signature=False) -> bool:
+    @classmethod
+    def is_picture(cls, file: FileItem, use_signature: bool = False) -> bool:
         """
-        Chekcs whether a file is a picture based on filetype(https://pypi.org/project/filetype/)
+        Checks whether a file is a picture based on filetype(https://pypi.org/project/filetype/)
         """
         if use_signature:
-            return filetype.is_image(file.full_path)
-        return filetype.is_image(file.full_path) or filetype.is_image(file.signature)
+            return filetype.is_image(file.signature)
+        _, extension = os.path.splitext(file.full_path)
+        return extension in cls.image_extensions
 
     @staticmethod
     def is_sha1_in_nsrl(sha1, conn) -> bool:
-        # print(sha1.upper())
         cursor = conn.cursor()
-
-        # noinspection SqlResolve, SqlNoDataSourceInspection
-        # Debugging: check id index is used
-        # query_plan = """EXPLAIN QUERY PLAN SELECT sha1 FROM FILE WHERE sha1 = ?"""
-        # cursor.execute(query_plan, (sha1.upper(),))
-        # plan = cursor.fetchall()
-        # print("Query Plan:", plan)
-
         query = """SELECT EXISTS(SELECT 1 FROM FILE WHERE sha1 = ?)"""
-
-        # print('running nsrl query...', end=' ')
-        # nsrl_start = time.time()
-
         cursor.execute(query, (sha1.upper(),))
         result = cursor.fetchone()[0]
-
-        # nsrl_end = time.time()
-        # print('query complete in {} seconds'.format(nsrl_end-nsrl_start))
-
         cursor.close()
-
         return bool(result)
 
     def process_disk(self, target_disk_image: TargetDiskImage):
