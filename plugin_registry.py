@@ -39,7 +39,8 @@ from mdp_plugins import (
 # External
 from mdp_plugins import (
     external_program_demo,
-    plaso
+    plaso,
+    block_usage
 )
 
 plugin_registry = {
@@ -74,8 +75,8 @@ plugin_registry = {
     "win_num_wifi_connections": win_num_wifi_connections.WinWifiCount,
 
     # External
-    "external_program_demo": external_program_demo.ExternalProgramDemo,
-    "plaso": plaso.Plaso
+    "plaso": plaso.Plaso,
+    "block_usage": block_usage.BlockUsage,
 }
 
 def load_enabled_plugins(enabled_plugins: List[str]):
