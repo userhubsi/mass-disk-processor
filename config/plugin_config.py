@@ -28,6 +28,7 @@ enabled_plugins = [
     "win_num_prefetch_files",
     "win_num_usbs",
     "win_num_wifi_connections",
+    "win_system_lang",
 
     # External
     # # "external_program_demo",
