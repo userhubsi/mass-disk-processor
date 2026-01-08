@@ -22,27 +22,27 @@ class NumberOfPictures(MDPPlugin):
     ]
 
     image_extensions = {
-        "dwg",
-        "xcf",
-        "jpg",
-        "jpx",
-        "png",
-        "apng",
-        "gif",
-        "webp",
-        "cr2",
-        "tif",
-        "bmp",
-        "jxr",
-        "psd",
-        "ico",
-        "heic",
-        "avif",
+        ".dwg",
+        ".xcf",
+        ".jpg",
+        ".jpx",
+        ".png",
+        ".apng",
+        ".gif",
+        ".webp",
+        ".cr2",
+        ".tif",
+        ".bmp",
+        ".jxr",
+        ".psd",
+        ".ico",
+        ".heic",
+        ".avif",
     }
 
     @staticmethod
     def is_user_controlled(file: FileItem) -> bool:
-        pattern = r"^P_\d+/(?:Users|Benutzer)/([^/]+)/(?:Desktop|Documents|Dokumente|Downloads|Pictures|Bilder|Music|Musik|Videos|Favorites|Favoriten|Links|Contacts|Kontakte|Saved Games|Gespeicherte Spiele|Searches|Suchen|3D Objects|3D Objekte)(?:/|$)"
+        pattern = r"^P_\d+/(?:Users|Benutzer)/([^/]+)/(?:Desktop|Documents|Dokumente|Downloads|Pictures|Bilder|Music|Musik|Videos|Favorites|Favoriten|Links|Contacts|Kontakte|Saved Games|Gespeicherte Spiele|Searches|Suchen|3D Objects|3D Objekte|OneDrive)(?:/|$)"
         return re.match(pattern, file.full_path) is not None
 
     @classmethod
@@ -68,12 +68,9 @@ class NumberOfPictures(MDPPlugin):
         disk_image = target_disk_image.accessor
         files = disk_image.files
         # Filter for files that are 'user-controlled' and 'pictures'
-        files = [x for x in files if self.is_user_controlled(x) and self.is_picture(x)]
-        no_pictures = len(files)
-        # print('no_pictures: {}'.format(no_pictures))
+        user_controlled_pictures = [x for x in files if self.is_user_controlled(x) and self.is_picture(x)]
+        no_pictures = len(user_controlled_pictures)
         no_non_nsrl_files = None
-        # no_nsrl = None
-        # no_nsrl_non_zero = None
         no_non_nsrl_files_incl_zero = None
 
         hashes_populated = target_disk_image.attributes["hashes_populated"]
@@ -101,7 +98,7 @@ class NumberOfPictures(MDPPlugin):
                 no_non_nsrl_files_incl_zero = 0
                 no_nsrl = 0
                 no_nsrl_non_zero = 0
-                file_items: List[FileItem] = disk_image.files
+                file_items: List[FileItem] = user_controlled_pictures
                 for each_file in file_items:
                     sha1_file_hash = each_file.sha1
                     if (
@@ -118,16 +115,11 @@ class NumberOfPictures(MDPPlugin):
                             no_non_nsrl_files += 1
                             no_non_nsrl_files_incl_zero += 1
                     else:
-                        # print('Unknown whether NSRL:', each_file.full_path)
                         no_non_nsrl_files += 1
                         no_non_nsrl_files_incl_zero += 1
 
                 # close database here
                 conn.close()
-                # print('NSRL database check took {} seconds'.format(time.time()-open_db_start))
-
-                # print("NSRL: ", no_nsrl)
-                # print("NSRL/Zero: ", no_nsrl_non_zero)
         else:
             print("File hash fields not populated. Skipping NSRL RDS check.")
 
@@ -138,8 +130,6 @@ class NumberOfPictures(MDPPlugin):
                 "no_pictures": no_pictures,
                 "no_non_nsrl_files": no_non_nsrl_files,
                 "no_non_nsrl_files_incl_zero": no_non_nsrl_files_incl_zero,
-                # 'no_nsrl' = no_nsrl
-                # 'no_nsrl_non_zero' = no_nsrl_non_zero
             },
         )
 
