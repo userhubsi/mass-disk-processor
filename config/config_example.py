@@ -22,3 +22,7 @@ max_file_size_for_sha1_calculation = 1000 # 1 KB
 
 # Set True if db should be used to store file lists (with sha1 and signatures) and load file info from file list if available
 use_db_for_file_lists = False
+
+import time
+min_valid_timestamp = 0
+max_valid_timestamp = time.time() + 86400   # now + 1 day (handle timezones)
