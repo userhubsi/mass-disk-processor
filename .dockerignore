@@ -1,0 +1,11 @@
+.git
+.vscode
+.devcontainer
+__pycache__
+*.pyc
+*.pyo
+venv
+.venv
+env
+output_data
+Windows-div

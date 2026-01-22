@@ -1,0 +1,31 @@
+{
+  "name": "MDP Dev",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+
+  "runArgs": ["--name", "mdp-dev"],
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "uid": "${localEnv:UID}",
+      "gid": "${localEnv:GID}"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-vscode.cpptools",
+        "ms-vscode.makefile-tools"
+      ]
+    }
+  },
+  "overrideCommand": true,
+  "postCreateCommand": "pip install -r requirements.txt",
+  "workspaceFolder": "/mdp",
+  "remoteUser": "dev"
+}
