@@ -5,16 +5,16 @@ import filetype
 import re
 from typing import List
 
+import config.config as config
 from marple.file_object import FileItem
 
-from config.config import path_to_nsrl
 from mdp_lib.disk_image_info import TargetDiskImage
 from mdp_lib.mdp_plugin import MDPPlugin
 
 
-class NumberOfPictures(MDPPlugin):
-    name = "no_pictures"
-    description = "Number of pictures"
+class NumberOfUserImages(MDPPlugin):
+    name = "num_user_images"
+    description = "Number of images at 'user-controlled' locations."
     expected_results = [
         "no_pictures",
         "no_non_nsrl_files",
@@ -50,7 +50,7 @@ class NumberOfPictures(MDPPlugin):
         """
         Checks whether a file is a picture based on filetype(https://pypi.org/project/filetype/)
         """
-        if use_signature:
+        if config.populate_file_signatures or config.populate_file_hashes_and_signatures:
             return filetype.is_image(file.signature)
         _, extension = os.path.splitext(file.full_path)
         return extension in cls.image_extensions
@@ -75,18 +75,18 @@ class NumberOfPictures(MDPPlugin):
 
         hashes_populated = target_disk_image.attributes["hashes_populated"]
 
-        if hashes_populated and path_to_nsrl:
+        if hashes_populated and config.path_to_nsrl:
             # TODO exception handling for incorrect path_to_nsrl or unexpected nsrl db
             # need sth like check whether nsrl db is valid, only go here if nsrl check method if valid
 
-            if not os.path.exists(path_to_nsrl):
+            if not os.path.exists(config.path_to_nsrl):
                 print("Provided NSRL database does not exist, skipping NSRL lookups")
             else:
                 print("NSRL database found...")
 
                 # open database here once
                 open_db_start = time.time()
-                conn = sqlite3.connect(path_to_nsrl)
+                conn = sqlite3.connect(config.path_to_nsrl)
                 open_db_end = time.time()
                 print(
                     "NSRL database opened in {} seconds".format(
