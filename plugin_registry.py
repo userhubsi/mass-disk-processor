@@ -11,11 +11,15 @@ from mdp_plugins import (
     num_user_files,
     operating_system_detect,
     file_size_stats,
-    file_types,
+    file_types
 )
 
 # Browser history
-from mdp_plugins import chrome_history, edge_history, firefox_history
+from mdp_plugins import (
+    chrome_history,
+    edge_history,
+    firefox_history
+)
 
 # Windows-specific
 from mdp_plugins import (
@@ -30,11 +34,14 @@ from mdp_plugins import (
     win_num_wifi_connections,
     win_screen_resolution,
     win_user_info,
-    win_version,
+    win_version
 )
 
 # External
-from mdp_plugins import external_program_demo, plaso
+from mdp_plugins import (
+    external_program_demo,
+    plaso
+)
 
 plugin_registry = {
     # General
@@ -48,10 +55,12 @@ plugin_registry = {
     "fs_lifespan": fs_lifespan.FSLifespan,
     "operating_system_detect": operating_system_detect.EstimateOS,
     "folder_statistics": folder_statistics.FolderStatistics,
+
     # Browser history
     "firefox_history": firefox_history.FirefoxHistory,
     "chrome_history": chrome_history.ChromeHistory,
     "edge_history": edge_history.EdgeHistory,
+
     # Windows
     "win_lifespan": win_lifespan.WinOSLifespan,
     "win_version": win_version.WinVersion,
@@ -65,11 +74,11 @@ plugin_registry = {
     "win_num_prefetch_files": win_num_prefetch_files.WinNumberOfPrefetchFiles,
     "win_num_usbs": win_num_usbs.WinUSBCount,
     "win_num_wifi_connections": win_num_wifi_connections.WinWifiCount,
+
     # External
     "external_program_demo": external_program_demo.ExternalProgramDemo,
-    "plaso": plaso.Plaso,
+    "plaso": plaso.Plaso
 }
-
 
 def load_enabled_plugins(enabled_plugins: List[str]):
     plugins = []
