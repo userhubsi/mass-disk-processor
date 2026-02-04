@@ -24,3 +24,5 @@ max_file_size_for_sha1_calculation = 1000 # 1 KB
 use_db_for_file_lists = False
 
 bulk_extractor = '/path/to/bulk_extractor/executable'
+
+path_to_browser_categories_json = "set/path/to/browser_categories.json"  # expected format: {"category": ["domain"]}
