@@ -26,3 +26,7 @@ use_db_for_file_lists = False
 bulk_extractor = '/path/to/bulk_extractor/executable'
 
 path_to_browser_categories_json = "set/path/to/browser_categories.json"  # expected format: {"category": ["domain"]}
+
+import time
+min_valid_timestamp = 0
+max_valid_timestamp = time.time() + 86400   # now + 1 day (handle timezones)
