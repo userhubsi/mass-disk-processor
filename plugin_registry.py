@@ -3,6 +3,7 @@ from typing import List
 # General
 from mdp_plugins import (
     disk_size,
+    folder_statistics,
     fs_lifespan,
     no_files,
     no_partitions,
@@ -56,6 +57,7 @@ plugin_registry = {
     "file_size_stats": file_size_stats.FileSizeStats,
     "fs_lifespan": fs_lifespan.FSLifespan,
     "operating_system_detect": operating_system_detect.EstimateOS,
+    "folder_statistics": folder_statistics.FolderStatistics,
 
     # Browser history
     "firefox_history": firefox_history.FirefoxHistory,

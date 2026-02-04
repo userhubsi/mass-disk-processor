@@ -1,6 +1,7 @@
 enabled_plugins = [
     # General
     "disk_size",
+    "folder_statistics",
     "no_partitions",
     "no_partition_types",
     "no_files",
