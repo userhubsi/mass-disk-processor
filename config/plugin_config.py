@@ -6,6 +6,7 @@ enabled_plugins = [
     "no_partition_types",
     "no_files",
     "num_user_files",
+    "num_user_images",
     "file_types",
     "file_size_stats",
     "fs_lifespan",

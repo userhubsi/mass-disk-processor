@@ -6,6 +6,7 @@ from mdp_plugins import (
     folder_statistics,
     fs_lifespan,
     no_files,
+    num_user_images,
     no_partitions,
     no_partition_types,
     num_user_files,
@@ -59,6 +60,7 @@ plugin_registry = {
     "fs_lifespan": fs_lifespan.FSLifespan,
     "operating_system_detect": operating_system_detect.EstimateOS,
     "folder_statistics": folder_statistics.FolderStatistics,
+    "num_user_images": num_user_images.NumberOfUserImages,
 
     # Browser history
     "firefox_history": firefox_history.FirefoxHistory,
