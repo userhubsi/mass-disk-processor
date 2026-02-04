@@ -40,7 +40,8 @@ from mdp_plugins import (
 from mdp_plugins import (
     external_program_demo,
     plaso,
-    bulk_extractor
+    bulk_extractor,
+    block_usage
 )
 
 plugin_registry = {
@@ -77,7 +78,8 @@ plugin_registry = {
     # External
     "external_program_demo": external_program_demo.ExternalProgramDemo,
     "plaso": plaso.Plaso,
-    "bulk_extractor": bulk_extractor.BulkExtractor
+    "bulk_extractor": bulk_extractor.BulkExtractor,
+    "block_usage": block_usage.BlockUsage,
 }
 
 def load_enabled_plugins(enabled_plugins: List[str]):

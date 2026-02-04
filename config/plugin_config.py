@@ -32,5 +32,6 @@ enabled_plugins = [
     # External
     # # "external_program_demo",
     # "plaso",
-    # "bulk_extractor"
+    # "bulk_extractor",
+    # "block_usage"
 ]
