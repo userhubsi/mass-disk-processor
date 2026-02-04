@@ -35,7 +35,8 @@ from mdp_plugins import (
     win_num_wifi_connections,
     win_screen_resolution,
     win_user_info,
-    win_version
+    win_version,
+    win_system_lang,
 )
 
 # External
@@ -78,6 +79,7 @@ plugin_registry = {
     "win_num_prefetch_files": win_num_prefetch_files.WinNumberOfPrefetchFiles,
     "win_num_usbs": win_num_usbs.WinUSBCount,
     "win_num_wifi_connections": win_num_wifi_connections.WinWifiCount,
+    "win_system_lang": win_system_lang.WindowsSystemLang,
 
     # External
     "external_program_demo": external_program_demo.ExternalProgramDemo,
