@@ -59,7 +59,10 @@ plugin_registry = {
     "file_size_stats": file_size_stats.FileSizeStats,
     "fs_lifespan": fs_lifespan.FSLifespan,
     "operating_system_detect": operating_system_detect.EstimateOS,
+<<<<<<< HEAD
     "folder_statistics": folder_statistics.FolderStatistics,
+=======
+>>>>>>> no_pictures
     "num_user_images": num_user_images.NumberOfUserImages,
 
     # Browser history

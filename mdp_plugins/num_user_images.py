@@ -13,8 +13,13 @@ from mdp_lib.mdp_plugin import MDPPlugin
 
 
 class NumberOfUserImages(MDPPlugin):
+<<<<<<< HEAD
     name = "no_pictures"
     description = "Number of pictures"
+=======
+    name = "num_user_images"
+    description = "Number of images at 'user-controlled' locations."
+>>>>>>> no_pictures
     expected_results = [
         "no_pictures",
         "no_non_nsrl_files",
