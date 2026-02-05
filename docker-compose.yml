@@ -1,0 +1,19 @@
+services:
+  mdp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mdp:latest
+    # run mdp with input
+    command: "/input"
+    # user/group id from the environment variables
+    # default to 1000
+    user: "${UID:-1000}:${GID:-1000}"
+    # mount input, output, and config
+    volumes:
+      - ${INPUT_PATH}:/input
+      - ${OUTPUT_PATH:-./output}:/mdp/output
+      - ${CONFIG_PATH:-./config}:/mdp/config
+    # set workdir to output to prevent permission problems
+    working_dir: /mdp/output
+
