@@ -22,7 +22,7 @@ class FSLifespan(MDPPlugin):
         valid_timestamps = []
         for each in files:
             timestamp = each.timestamps['cr_time']
-            if timestamp is not None and self.min_valid_timestamp < timestamp < self.max_valid_timestamp:
+            if timestamp is not None and min_valid_timestamp < timestamp < max_valid_timestamp:
                 valid_timestamps.append(timestamp)
 
         valid_timestamps.sort()
