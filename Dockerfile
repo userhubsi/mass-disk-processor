@@ -37,5 +37,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV PATH="/mdp/external_programs/bulk_extractor/src:${PATH}"
-ENTRYPOINT ["python", "mdp.py"]
+ENTRYPOINT ["python", "/mdp/mdp.py"]
 CMD ["--help"]
