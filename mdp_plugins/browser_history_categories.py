@@ -4,6 +4,7 @@ import re
 from config.config import path_to_browser_categories_json
 from mdp_lib.browser_history import BrowserHistory, SearchEngine
 from mdp_lib.disk_image_info import TargetDiskImage
+from collections import defaultdict
 
 
 class BrowserHistoryCategories(BrowserHistory):
@@ -91,11 +92,11 @@ class BrowserHistoryCategories(BrowserHistory):
                 )
                 browser_results.append(browser_result)
 
-            category_result: dict[str, int] = {}
+            category_result: dict[str, int] = defaultdict(int)
             for browser_result in browser_results:
                 for domain, visit_count in browser_result.items():
                     if visit_count:
-                        category_result[f"{category}_{domain}"] += visit_count
+                        category_result[f"{domain}"] += visit_count
             result_dict.update(category_result)
 
         result = self.create_result(target_disk_image)
